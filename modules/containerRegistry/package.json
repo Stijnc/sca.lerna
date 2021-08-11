@@ -1,6 +1,6 @@
 {
     "name": "containeregistry",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "azure container registry ",
     "keywords": [
         "bicep",
