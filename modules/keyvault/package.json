@@ -1,0 +1,12 @@
+{
+    "name": "keyvault",
+    "version": "1.0.0",
+    "description": "azure keyvault ",
+    "keywords": [
+        "bicep",
+        "azure",
+        "keyvault"
+    ],
+    "author": "Stijn Callebaut <stijn.callebaut@outlook.be>",
+    "homepage": ""
+}

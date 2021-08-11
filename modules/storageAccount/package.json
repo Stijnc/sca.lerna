@@ -1,0 +1,13 @@
+{
+    "name": "storageaccount",
+    "version": "1.0.0",
+    "description": "azure storage account ",
+    "keywords": [
+        "bicep",
+        "azure",
+        "storage",
+        "account"
+    ],
+    "author": "Stijn Callebaut <stijn.callebaut@outlook.be>",
+    "homepage": ""
+}
