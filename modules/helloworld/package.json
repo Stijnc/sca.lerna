@@ -1,0 +1,17 @@
+{
+    "name": "helloworld",
+    "version": "1.0.0",
+    "description": "hello world",
+    "author": "Stijn Callebaut <stijn.callebaut@outlook.be>",
+    "homepage": "https://github.com/Stijnc/sca.lerna#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Stijnc/sca.lerna.git"
+    },
+    "scripts": {
+        "test": "echo \"Error: run tests from root\" && exit 1"
+    },
+    "bugs": {
+        "url": "https://github.com/Stijnc/sca.lerna/issues"
+    }
+}
