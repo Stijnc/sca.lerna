@@ -1,11 +1,12 @@
 {
-    "name": "keyvault",
+    "name": "containeregistry",
     "version": "1.0.0",
-    "description": "azure keyvault ",
+    "description": "azure container registry ",
     "keywords": [
         "bicep",
         "azure",
-        "keyvault"
+        "acr",
+        "container registry"
     ],
     "author": "Stijn Callebaut <stijn.callebaut@outlook.be>",
     "homepage": ""
