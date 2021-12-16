@@ -52,10 +52,10 @@ jobs:
 
         #version the packages
         if ("${{ github.base_ref }}" -eq 'development') {
-          lerna version --conventional-commits --conventional-prerelease --preid beta --yes --no-git-tag-version
+          lerna version --conventional-commits --conventional-prerelease --preid beta --yes
         }
         else {
-          lerna version --conventional-commits --conventional-graduate --yes --no-git-tag-version
+          lerna version --conventional-commits --conventional-graduate --yes
         }
 
         #publish the packages
