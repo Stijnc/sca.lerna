@@ -52,12 +52,12 @@ jobs:
 
         #version the packages
         if ("${{ github.base_ref }}" -eq 'development') {
-          lerna version --conventional-commits --conventional-prerelease --preid beta --yes --no-git-tag-version
+           lerna version --conventional-commits --conventional-prerelease --preid beta --no-push --yes && git tag -d $(git describe --abbrev=0)
         }
         else {
-          lerna version --conventional-commits --conventional-graduate --yes --no-git-tag-version
+          lerna version --conventional-commits --conventional-graduate --yes --no-push --yes && git tag -d $(git describe --abbrev=0)
         }
-        git commit --allow-empty -m "[skip ci] creating release"
+        git push
 
         #publish the packages
         $PackageList = $null;
