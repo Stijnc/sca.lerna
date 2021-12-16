@@ -6,9 +6,6 @@ on:
     branches:
       - development
       - main
-  push:
-    branches:
-      - main
 
 permissions:
   id-token: write
