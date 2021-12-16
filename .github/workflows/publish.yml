@@ -34,7 +34,7 @@ jobs:
 
     - name: "Version and publish"
       env:
-        GH_TOKEN: ${{ secrets.PUBLISH_PACKAGES }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       shell: pwsh
       run: |
         git config user.name "${{ github.actor }}"
