@@ -18,9 +18,6 @@ param location string = resourceGroup().location
 param acrSku string = 'Basic'
 
 // azure container registry
-// another comment
-//and another comment
-// some more
 resource acr 'Microsoft.ContainerRegistry/registries@2019-12-01-preview' = {
   name: acrName
   location: location
