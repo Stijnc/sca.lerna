@@ -1,3 +1,4 @@
+//comment
 param sku string = 'pergb2018'
 param dataRetention int = 30
 param location string = resourceGroup().location
