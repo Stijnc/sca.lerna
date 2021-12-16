@@ -59,6 +59,8 @@ jobs:
         #publish the packages
         $PackageList = $null;
         Write-output "publishing"
+        Get-Childitem "/home/runner/work/sca.lerna/sca.lerna/"
+        Get-Childitem "/home/runner/work/sca.lerna/sca.lerna/modules/"
         $PackageList +=  $changedFiles | % { ConvertFrom-Json $(get-content  $(Join-Path -Path "modules" -ChildPath $(Join-Path -Path $_ -ChildPath "package.json")) -raw ) }
 
         $PackageList | % {az bicep publish $("modules/{0}/{0}.bicep"-f $_.name) --target $("br:{0}/bicep/modules/{1}:v{2}" -f "scabicep.azurecr.io", $_.name, $_.version) }
