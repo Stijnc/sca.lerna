@@ -44,7 +44,7 @@ jobs:
         $changedFiles = lerna changed
 
         #version the packages
-        if (${{ github.base_ref }} -eq 'development') {
+        if ("${{ github.base_ref }}" -eq 'development') {
           lerna version --conventional-commits --conventional-prerelease --preid beta --yes
         }
         else {
