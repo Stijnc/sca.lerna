@@ -20,6 +20,7 @@ param acrSku string = 'Basic'
 // azure container registry
 // adding comments
 // adding some more
+// and some more
 resource acr 'Microsoft.ContainerRegistry/registries@2019-12-01-preview' = {
   name: acrName
   location: location
