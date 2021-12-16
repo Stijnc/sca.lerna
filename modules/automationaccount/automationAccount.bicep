@@ -8,6 +8,7 @@ var workspaceName = toLower('la-${appName}')
 var automationaccountName = toLower('aa${appName}')
 var automationaccountDiagName = toLower('diag-aa${appName}')
 
+// log analytics
 resource automation_log_analytics 'Microsoft.OperationalInsights/workspaces@2020-03-01-preview' = {
   location: location
   name: workspaceName
