@@ -1,0 +1,59 @@
+name: Publish
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - development
+      - main
+
+jobs:
+  publish:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: "Checkout"
+      uses: 
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: 'Az CLI login'
+      uses: azure/login@v1
+      with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+    - name: "Use NodeJS 14"
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: "Version and publish"
+      env:
+        GH_TOKEN: ${{ secrets.PUBLISH_PACKAGES }}
+      shell: pwsh
+      run: |
+        git config user.name "${{ github.actor }}"
+        git config user.email "${{ github.actor}}@users.noreply.github.com"
+
+        #get all changed files
+        $changedFiles = lerna changed
+
+        #version the packages
+        if (${{ github.base_ref }} -eq 'development') {
+          lerna version --conventional-commits --conventional-prerelease --preid beta --yes
+        }
+        else {
+          lerna version --conventional-commits --conventional-graduate --yes
+        }
+
+        #publish the packages
+        $PackageList = $null; 
+        $PackageList +=  $changedlist | 
+          % { ConvertFrom-Json $(get-content  $(Join-Path -Path "modules" -ChildPath $(Join-Path -Path $_ -ChildPath "package.json")) -raw ) }
+
+        $PackageList | 
+          % {az bicep publish $("modules/{0}/{0}.bicep"-f $_.name) --target $("br:{0}/bicep/modules/{1}:v{2}" -f "scabicep.azurecr.io", $_.name, $_.version) }
+
+        
