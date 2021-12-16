@@ -7,6 +7,10 @@ on:
       - development
       - main
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   publish:
     if: github.event.pull_request.merged == true
@@ -14,10 +18,11 @@ jobs:
 
     steps:
     - name: "Checkout"
-      uses: 
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: 'Az CLI login'
       uses: azure/login@v1
       with:
@@ -31,7 +36,7 @@ jobs:
 
     - name: "Version and publish"
       env:
-        GH_TOKEN: ${{ secrets.PUBLISH_PACKAGES }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       shell: pwsh
       run: |
         git config user.name "${{ github.actor }}"
@@ -41,16 +46,16 @@ jobs:
         $changedFiles = lerna changed
 
         #version the packages
-        if (${{ github.base_ref }} -eq 'development') {
-          lerna version --conventional-commits --conventional-prerelease --preid beta --yes
+        if ("${{ github.base_ref }}" -eq 'development') {
+          lerna version --conventional-commits --conventional-prerelease --preid beta --yes --no-git-tag-version
         }
         else {
-          lerna version --conventional-commits --conventional-graduate --yes
+          lerna version --conventional-commits --conventional-graduate --yes --no-git-tag-version
         }
 
         #publish the packages
         $PackageList = $null; 
-        $PackageList +=  $changedlist | 
+        $PackageList +=  $changedFiles | 
           % { ConvertFrom-Json $(get-content  $(Join-Path -Path "modules" -ChildPath $(Join-Path -Path $_ -ChildPath "package.json")) -raw ) }
 
         $PackageList | 
