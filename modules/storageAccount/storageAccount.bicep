@@ -4,6 +4,7 @@ param containerName string = 'logs'
 param location string = resourceGroup().location
 
 //storage account
+// comment
 resource sa 'Microsoft.Storage/storageAccounts@2019-06-01' = {
   name: storageAccountName
   location: location
