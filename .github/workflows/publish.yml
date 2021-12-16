@@ -44,6 +44,7 @@ jobs:
 
         #get all changed files
         $changedFiles = lerna changed
+        $changedFiles
 
         #version the packages
         if ("${{ github.base_ref }}" -eq 'development') {
