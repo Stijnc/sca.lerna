@@ -55,7 +55,7 @@ jobs:
 
         #publish the packages
         $PackageList = $null; 
-        $PackageList +=  $changedlist | 
+        $PackageList +=  $changedFiles | 
           % { ConvertFrom-Json $(get-content  $(Join-Path -Path "modules" -ChildPath $(Join-Path -Path $_ -ChildPath "package.json")) -raw ) }
 
         $PackageList | 
