@@ -1,0 +1,20 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.209.6/containers/javascript-node
+{
+	"name": "bicep lerna",
+
+
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"dbaeumer.vscode-eslint",
+		"ms-azuretools.vscode-bicep",
+		"ms-vscode.azurecli",
+		"ms-vscode.powershell"
+	],
+	"features": {
+		"git": "latest",
+		"github-cli": "latest",
+		"azure-cli": "latest",
+		"powershell": "latest"
+	}
+}
